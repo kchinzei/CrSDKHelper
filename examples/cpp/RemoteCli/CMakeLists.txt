@@ -48,7 +48,7 @@ foreach(cli_src_stem IN ITEMS ${cli_src_stems})
   list(APPEND c_src "${CrSDK_SAMPLE_SOURCE_PATH}/${cli_src_stem}.h")
 endforeach(cli_src_stem)
 
-add_executable(${app} ${c_src} ${CrSDK_SOURCE_FILES})
+add_executable(${app} ${c_src} ${CrSDK_INCLUDE_FILES} ${CrSDK_SOURCE_FILES})
 target_include_directories(${app} PRIVATE ${CrSDK_INCLUDE_PATH})
 target_link_libraries(${app} ${CrSDK_LIBRARIES})
 

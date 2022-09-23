@@ -37,7 +37,7 @@ if(CrSDK_FOUND)
     COMMENT "Generate ${c_hdr} from CrError.h"
     VERBATIM)
 
-  add_executable(${app} ${c_srcs} ${c_hdr} ${CrSDK_SOURCE_FILES})
+  add_executable(${app} ${c_srcs} ${c_hdr} ${CrSDK_INCLUDE_FILES})
   target_include_directories(${app} PRIVATE "${CrSDK_INCLUDE_PATH}" PRIVATE "${CMAKE_CURRENT_BINARY_DIR}")
   target_link_libraries(${app} ${CrSDK_LIBRARIES})
 

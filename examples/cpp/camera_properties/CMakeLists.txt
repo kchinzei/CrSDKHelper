@@ -24,18 +24,15 @@ set(app camera_properties)
 set(c_srcs camera_properties.cpp)
 project(${app})
 
-if(APPLE)
-  set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14" CACHE STRING "Minimum OS X deployment version")
-  set(CMAKE_APPLE_SILICON_PROCESSOR "x86_64" CACHE STRING "")
-endif(APPLE)
-
-# Platform independent part
-
+# Find the Sony SDK
+if(CrSDK_ROOT_DIR)
+  list(APPEND CMAKE_MODULE_PATH "${CrSDK_ROOT_DIR}/../cmake")
+endif(CrSDK_ROOT_DIR)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/../../../cmake")
 find_package(CrSDK MODULE REQUIRED)
 
 if(CrSDK_FOUND)
-  add_executable(${app} ${c_srcs} ${CrSDK_SOURCE_FILES})
+  add_executable(${app} ${c_srcs} ${CrSDK_INCLUDE_FILES} ${CrSDK_SOURCE_FILES})
   target_include_directories(${app} PRIVATE ${CrSDK_INCLUDE_PATH})
   target_link_libraries(${app} ${CrSDK_LIBRARIES})
 

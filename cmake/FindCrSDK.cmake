@@ -73,7 +73,7 @@ Typical CMakeLists.txt snippet is;
  FIND_PACKAGE(CrSDK MODULE REQUIRED)
  IF(CrSDK_FOUND)
    LINK_DIRECTORIES(${CrSDK_LIBRARY_PATH})
-   ADD_EXECUTABLE(${your_app} ${your_srcs})
+   ADD_EXECUTABLE(${your_app} ${your_srcs} ${CrSDK_INCLUDE_FILES} ${CrSDK_SOURCE_FILES})
    TARGET_INCLUDE_DIRECTORIES(${your_app} PRIVATE ${CrSDK_INCLUDE_PATH})
    TARGET_LINK_LIBRARIES(${your_app} ${your_libs} ${CrSDK_LIBRARIES})
    CrSDK_target_compile_setting(${your_app})
@@ -95,6 +95,16 @@ set(__src_path app/CRSDK)
 set(__lib_file Cr_Core libCr_Core)
 set(__lib_path external/crsdk)
 set(__readme_stem CrSDK_Readme_v)
+set(__include_files
+  CrCommandData.h
+  CrDefines.h
+  CrDeviceProperty.h
+  CrError.h
+  CrImageDataBlock.h
+  CrTypes.h
+  ICrCameraObjectInfo.h
+  IDeviceCallback.h
+)
 
 if(CrSDK_ROOT_DIR)
   set(CrSDK_root_tmp "${CrSDK_ROOT_DIR}")
@@ -132,7 +142,10 @@ find_package_handle_standard_args(CrSDK
   )
 
 if(CrSDK_FOUND)
-  set(CrSDK_INCLUDE_FILES "${__include_file}")
+  set(CrSDK_INCLUDE_FILES "${CrSDK_INCLUDE_PATH}/${__include_file}")
+  foreach(hdr IN ITEMS ${__include_files})
+    list(APPEND CrSDK_INCLUDE_FILES "${CrSDK_INCLUDE_PATH}/${hdr}")
+  endforeach(hdr)
   set(CrSDK_SOURCE_FILES "")
 
   set(CrSDK_LIBRARIES "${CrSDK_LIBRARY}")
@@ -161,7 +174,7 @@ if(CrSDK_FOUND)
   # Include util for you.
   include("${CMAKE_CURRENT_LIST_DIR}/CrSDKUtils.cmake")
 
-  # It should be in CrSDKUtil.cmake, but experiments reveal it's necessary to be called before add_executable().
+  # Experiments reveal it's necessary to be called before add_executable().
   if(APPLE)
     set(CMAKE_OSX_ARCHITECTURES "x86_64")
   endif(APPLE)
