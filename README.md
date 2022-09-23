@@ -11,7 +11,7 @@ CrSDK Helper adds the following
 
 ## What is [Sony Remote Camera SDK](https://support.d-imaging.sony.co.jp/app/sdk/en/index.html)?
 
-[Sony Remote Camera SDK](https://support.d-imaging.sony.co.jp/app/sdk/en/index.html) (CrSDK) enables Win/Mac/Linux computer to connect multiple Sony cameras via USB or Ethernet cable connections.
+[Sony Remote Camera SDK](https://support.d-imaging.sony.co.jp/app/sdk/en/index.html) (CrSDK) enables Win/Mac/Linux computer to connect multiple Sony cameras via USB or wired LAN connections.
 Sony had another API for Sony cameras, but completely replaced by CrSDK. See [here](https://developer.sony.com/develop/cameras/).
 
 CrSDK is a suite of C++ classes and binary libraries to link from c++ projects.
@@ -21,13 +21,12 @@ Past wrapper projects in github (
     [ex3](https://nerelicpast.com/?_=%2Fnaoyuki-sato%2FCamera-Remote-API%23Fc4PUI%2BG6VPSodUGYlCLziUM)
     ), or in 
     [rubygem](https://www.rubydoc.info/gems/sony-camera-remote/0.0.1)
-do not work with CrSDK, because new APIs are completely different.
+do not work with CrSDK, because new API is completely incompatible.
 
 ## What is CrSDK Helper?
 
-CrSDK Helper provide you two cmake modules, `FindCrSDK.cmake` and `CrSDKUtils.cmake`.
+CrSDK Helper provides you two cmake modules, `FindCrSDK.cmake` and `CrSDKUtils.cmake`.
 They make your cmake project very simple and relocatable at any place in the file system.
-Look at the first example, `RemoteCli`.
 
 ---
 
@@ -52,8 +51,8 @@ CrSDKHelper
          ...
 ```
 
-You can put `CrSDKHelper` at any place.
-You can also put `CrSDK_v1` folder at any place, but you need to tell where it is when running `cmake`.
+You can put `CrSDKHelper` folder at any place.
+You can also put `CrSDK_v1` folder at any place, but you will need to tell where it is when running `cmake`.
 
 You can start playing with CrSDK Helper from building `RemoteCli` in the examples.
 It is indeed same as the Sony SDK's original example but with cleaner CMakeLists.txt.  
