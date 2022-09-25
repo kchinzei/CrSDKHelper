@@ -11,8 +11,8 @@ CrSDK Helper は以下を追加します：
 
 ## [Sony Remote Camera SDK](https://support.d-imaging.sony.co.jp/app/sdk/ja/index.html)について
 
-[Sony Remote Camera SDK](https://support.d-imaging.sony.co.jp/app/sdk/en/index.html) (CrSDK)は，Win/Mac/LinuxマシンからSonyのカメラをUSBまたは有線LAN接続で制御するためのAPIです．
-Sonyは以前，カメラ制御用のAPIキットを公表していましたが，CrSDKはこれに代わるものです[こちら](https://developer.sony.com/ja/develop/cameras/ja).
+[Sony Remote Camera SDK](https://support.d-imaging.sony.co.jp/app/sdk/ja/index.html) (CrSDK)は，Win/Mac/LinuxマシンからSonyのカメラをUSBまたは有線LAN接続で制御するためのAPIです．
+Sonyは以前，カメラ制御用のAPIキットを公表していましたが，CrSDKはこれに代わるものです（[こちら](https://developer.sony.com/ja/develop/cameras/ja)）.
 
 CrSDK はC++クラスライブラリとC++プロジェクトでリンクするためのバイナリファイルで構成されます．
 Github上の過去のラッパープロジェクト（
@@ -27,7 +27,10 @@ Github上の過去のラッパープロジェクト（
 
 CrSDK Helper は２つのcmakeモジュール  `FindCrSDK.cmake` 及び `CrSDKUtils.cmake` を提供します．
 これらを使うとcmakeプロジェクトをシンプルかつファイルシステム上でフレキシブルに配置できます．
-最初に  `RemoteCli` サンプルをご覧ください．
+
+MacOS Monterey及びLinux32 ARMv7 (Raspberry Pi 4)上でコンパイル，カメラとしてRX0 MarkIIを使ってテストしています．  
+Cmakeとしてver. 3.20以上を必要としています．
+2022年9月現在，Raspberry Piのレポジトリでは3.18までしか用意されていませんので，cmakeを[ソース](https://github.com/Kitware/CMake)からビルドする必要がありました．
 
 ---
 
@@ -71,6 +74,13 @@ CrSDKHelper
 
 （ccmake，Windowsの場合はcmake-gui.exeを使うこともできます）
 これで，実行ファイル `RemoteCli` が build フォルダー内にできているはずです．
+
+## 独自のプロジェクトを作るには
+
+現在はプロジェクトテンプレートがありません．
+よって，`examples/cpp/RemoteCli` をコピーして始めるのが良いと思います．
+`CrSDK_v1/app` フォルダ内のクラスをそのまま使いたいことがあるかもしれません（例えば，`cli::Text`）．
+Cmakeの変数 `CrSDK_SAMPLE_SOURCE_PATH` を使うとそのフォルダへの絶対パスを得ることができます．
 
 ## なぜCrSDK Helper?
 

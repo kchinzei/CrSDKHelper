@@ -11,7 +11,7 @@ CrSDK Helper adds the following
 
 ## What is [Sony Remote Camera SDK](https://support.d-imaging.sony.co.jp/app/sdk/en/index.html)?
 
-[Sony Remote Camera SDK](https://support.d-imaging.sony.co.jp/app/sdk/en/index.html) (CrSDK) enables Win/Mac/Linux computer to connect multiple Sony cameras via USB or wired LAN connections.
+[Sony Remote Camera SDK](https://support.d-imaging.sony.co.jp/app/sdk/en/index.html) (CrSDK) enables a Win/Mac/Linux computer to connect multiple Sony cameras via USB or wired LAN connections.
 Sony had another API for Sony cameras, but completely replaced by CrSDK. See [here](https://developer.sony.com/develop/cameras/).
 
 CrSDK is a suite of C++ classes and binary libraries to link from c++ projects.
@@ -27,6 +27,11 @@ do not work with CrSDK, because new API is completely incompatible.
 
 CrSDK Helper provides you two cmake modules, `FindCrSDK.cmake` and `CrSDKUtils.cmake`.
 They make your cmake project very simple and relocatable at any place in the file system.
+
+CrSDK Helper has been tested on MacOS Monterey and Linux32 ARMv7 (Raspberry Pi 4) to compile and run with RX0 MarkII.  
+Cmake ver. 3.20 or newer is required.
+As of September 2022, cmake in the Raspberry Pi repository was 3.18.
+You will need to build cmake from [the source](https://github.com/Kitware/CMake).
 
 ---
 
@@ -68,6 +73,7 @@ After that, all you do is follwing this from command line:
 ```
 
 (You can also use ccmake or cmake-gui.exe for Windows)
+Then, there is the app `RemoteCli` in the build folder.
 
 ## Why CrSDK Helper?
 
